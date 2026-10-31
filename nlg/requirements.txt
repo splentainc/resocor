@@ -1,0 +1,3 @@
+# Runtime dependencies only. No model weights, SDKs or domain connectors.
+pydantic==2.12.5
+simplenlg==0.2.0

@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "id": "revenue_review",
+  "description": "Synthetic review band with invented thresholds; not approved business policy",
+  "hit_policy": "UNIQUE",
+  "inputs": {
+    "revenue": {"type": "number", "unit": "USD", "min": "0", "max": "10000"}
+  },
+  "outputs": {
+    "band": {"type": "string", "values": ["standard_review", "large_review"]}
+  },
+  "rules": [
+    {"id": "standard", "when": {"revenue": "< 3000"}, "then": {"band": "\"standard_review\""}},
+    {"id": "large", "when": {"revenue": ">= 3000"}, "then": {"band": "\"large_review\""}}
+  ]
+}

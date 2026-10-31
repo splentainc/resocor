@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "id": "replenishment_demo",
+  "description": "Simulated stock policy; no inventory writes or approved business policy",
+  "hit_policy": "UNIQUE",
+  "inputs": {
+    "stock": {"type": "number", "min": "0", "max": "10000"},
+    "minimum": {"type": "number", "min": "0", "max": "10000"},
+    "target": {"type": "number", "min": "0", "max": "10000"}
+  },
+  "outputs": {
+    "action": {"type": "string", "values": ["replenish", "hold"]},
+    "quantity": {"type": "number", "min": "0", "max": "10000"}
+  },
+  "rules": [
+    {"id": "reorder", "when": {"stock": "<= minimum", "minimum": "-", "target": ">= minimum"},
+     "then": {"action": "\"replenish\"", "quantity": "target - stock"}},
+    {"id": "hold", "when": {"stock": "> minimum", "minimum": "-", "target": ">= minimum"},
+     "then": {"action": "\"hold\"", "quantity": "0"}}
+  ]
+}

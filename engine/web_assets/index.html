@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resocor · Conversation & trace</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+  <script src="/sessions.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Resocor home"><span class="brand-mark">r</span> resocor<span class="brand-label">ENGINE WORKBENCH</span></a>
+    <div class="header-actions"><span id="connection" role="status">Connecting…</span><button id="export" class="quiet" disabled>Export trace</button><button id="reset" class="quiet">New conversation</button></div>
+  </header>
+  <main class="workspace">
+    <section class="conversation" aria-label="Conversation">
+      <div class="section-heading"><div><div class="eyebrow">YOUR CONVERSATION</div><h1>Answers with a paper trail.</h1></div><span class="count" id="turn-count">0 turns</span></div>
+      <div class="session-controls"><label for="conversation-select">Saved conversations</label><select id="conversation-select" aria-label="Saved conversations"></select><span id="session-state">Loading saved state…</span></div>
+      <div id="messages" class="messages" role="log" aria-label="Conversation messages" aria-live="polite">
+        <div id="welcome" class="welcome">
+          <span class="welcome-icon" aria-hidden="true">↳</span><h2>Ask. Inspect. Follow the evidence.</h2>
+          <p>Every answer keeps its segments, checked query, source facts, decision rules and response timings.</p>
+          <div class="eyebrow">TRY A QUESTION</div><div id="examples" class="examples"></div>
+        </div>
+      </div>
+      <div class="composer-wrap">
+        <div id="request-status" role="status" class="request-status"></div>
+        <form id="composer">
+          <label class="sr-only" for="question">Your question</label>
+          <textarea id="question" rows="2" maxlength="4096" placeholder="Ask a question using your configured domain…" required></textarea>
+          <div class="composer-controls">
+            <fieldset id="response-style" class="response-style"><legend>Response detail</legend><label><input type="radio" name="detail" value="crisp" checked>Crisp</label><label><input type="radio" name="detail" value="detailed">Detailed</label><label><input type="radio" name="detail" value="audit">Audit</label></fieldset>
+            <button type="submit" id="send">Send <span aria-hidden="true">↑</span></button>
+          </div>
+        </form>
+        <label class="policy-control" for="policy">DMN policy <select id="policy"><option value="none">None</option><option value="revenue_review">Annual revenue review · illustrative</option></select></label>
+        <p class="composer-note">Enter sends · Shift + Enter adds a line. Follow-ups can replace a company, metric or fiscal year. Conversations and full query traces are saved in SQLite.</p>
+      </div>
+    </section>
+    <aside class="inspector" aria-label="Turn trace">
+      <div class="inspector-heading"><div class="eyebrow">FOLLOW THE EVIDENCE</div><h2>Inside this answer</h2><p id="inspection-query">Select a response to inspect its execution.</p><div id="inspection-meta" class="inspection-meta"></div></div>
+      <div class="tabs" role="tablist" aria-label="Trace sections">
+        <button role="tab" id="tab-steps" aria-controls="trace-panel" aria-selected="true" data-tab="steps">Steps</button>
+        <button role="tab" id="tab-segments" aria-controls="trace-panel" aria-selected="false" tabindex="-1" data-tab="segments">Segments</button>
+        <button role="tab" id="tab-query" aria-controls="trace-panel" aria-selected="false" tabindex="-1" data-tab="query">Query</button>
+        <button role="tab" id="tab-facts" aria-controls="trace-panel" aria-selected="false" tabindex="-1" data-tab="facts">Facts</button>
+        <button role="tab" id="tab-dmn" aria-controls="trace-panel" aria-selected="false" tabindex="-1" data-tab="dmn">DMN</button>
+        <button role="tab" id="tab-nlg" aria-controls="trace-panel" aria-selected="false" tabindex="-1" data-tab="nlg">NLG</button>
+        <button role="tab" id="tab-context" aria-controls="trace-panel" aria-selected="false" tabindex="-1" data-tab="context">Context</button>
+        <button role="tab" id="tab-logs" aria-controls="trace-panel" aria-selected="false" tabindex="-1" data-tab="logs">Query log</button>
+        <button role="tab" id="tab-time" aria-controls="trace-panel" aria-selected="false" tabindex="-1" data-tab="time">Time logs</button>
+      </div>
+      <div id="trace-panel" class="trace-panel" role="tabpanel" aria-labelledby="tab-steps" tabindex="0"><div class="inspector-empty"><span aria-hidden="true">◎</span><h3>The answer is only the beginning.</h3><p>Send a question to see each measured step, from the original words to the checked response.</p></div></div>
+      <footer class="inspector-footer"><span class="status-dot"></span> Deterministic engine · persisted facts · no runtime LLM</footer>
+    </aside>
+  </main>
+</body>
+</html>

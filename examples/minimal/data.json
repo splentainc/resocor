@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "provenance": "Authored synthetic example; all entities and values are fictional.",
+  "company": "ExampleCo",
+  "threshold": "1000",
+  "calendar": [
+    {"year": 2024, "start": "2024-01-01", "end": "2024-12-31"}
+  ],
+  "facts": [
+    {
+      "fact_id": "synthetic-revenue-2024",
+      "company": "ExampleCo",
+      "predicate": "revenue_annual",
+      "value": "1200",
+      "valid_from": "2024-01-01",
+      "valid_to": "2025-01-01",
+      "source": "Authored synthetic example; not a filing or observed financial fact."
+    }
+  ]
+}

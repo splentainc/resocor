@@ -1,0 +1,28 @@
+# Local environments and generated files
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+dist/
+
+# Supply domain knowledge and source data locally; do not commit them here.
+*.db
+*.db-*
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.sqlite3-*
+*.pem
+*.key
+.env
+.env.*
+engine/data/
+engine/knowledge/
+engine/runtime/
+engine/logs/
+chatter/generic.json
+poc/
+archive/
+datasets/
+private/
